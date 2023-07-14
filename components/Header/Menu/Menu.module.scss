@@ -1,11 +1,62 @@
 @import "/styles/variables";
 @import "/styles/mixins";
 
-.meny {
-    display: flex;
-    border-bottom: solid $border-color;
-    border-width: 1px;
-    width: 1000px;
-    padding: 30px 400px 30px 400px;
-    overflow: hidden;
+.menu {
+    &__nav {
+        border-bottom: solid $border-color;
+        border-width: 1px;
+        display: flex;
+        list-style: none;
+        gap: 2rem;
+        justify-content: center;
+    }
+
+    &__menuBtn {
+        outline: none;        
+        border: 0;
+        background: transparent;
+
+        &__logo {
+            padding-bottom: 1rem;
+            font-size: 1rem;
+
+            img {
+                margin-left: 0.2rem;
+                margin-bottom: 0.1rem;
+            }
+        }
+    }
+
+    &__dropDawnMenu {
+        display: none;
+
+        &--show {
+            position: absolute;
+            top: 8.74rem;
+            display: block;
+            border: solid $border-color;
+            background-color: white;
+            border-width: 1px;
+            list-style: none;
+            padding: 1rem 1rem 1rem 1rem;
+            width: 176px;
+        }
+    }
+
+    &__list {
+        border-bottom: solid $border-color;
+        border-width: 1px;
+        text-align: left;
+
+        p {
+            font-size: 0.8rem;
+            img {
+                float: right;
+            }
+        }
+
+        &--borderNon {
+            border: none;
+        }
+    }
 }
