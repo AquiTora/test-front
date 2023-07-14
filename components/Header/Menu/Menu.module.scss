@@ -1,0 +1,11 @@
+@import "/styles/variables";
+@import "/styles/mixins";
+
+.meny {
+    display: flex;
+    border-bottom: solid $border-color;
+    border-width: 1px;
+    width: 1000px;
+    padding: 30px 400px 30px 400px;
+    overflow: hidden;
+}
