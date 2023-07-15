@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import style from './Menu.module.scss';
+import style from './DropDownMenu.module.scss';
+import { useEffect, useRef, useState } from "react";
 
 const menuItems = ['Demos', 'Post', 'Features', 'Categories', 'Shop', 'Buy Now'];
 const subMenuItems = ['Post Header', 'Post Layout', 'Share Buttons', 'Gallery Post', 'Video Post'];
@@ -7,16 +7,10 @@ const subMenuItems = ['Post Header', 'Post Layout', 'Share Buttons', 'Gallery Po
 const Option = (props) => {
     const [show, setShow] = useState('');
 
-    function handleChangeShow () {
-        show === '' ? setShow('--show') : setShow('');
-    }
-
     return (
         <>
             <button 
                 className={style.menu__menuBtn}
-                onMouseEnter={handleChangeShow}
-                onMouseLeave={handleChangeShow}
             >
                 <div className={style.menu__menuBtn__logo}>
                     {props.item}
@@ -51,9 +45,9 @@ const Option = (props) => {
     )
 }
 
-const Menu = () => {
+const DropDownMenu = () => {
     return (
-        <div className={style.menu}>
+        <div>
             <ul className={style.menu__nav}>
                 {menuItems.map((item) => {
                     return (
@@ -64,9 +58,9 @@ const Menu = () => {
                         </il>
                     )
                 })}
-            </ul>
+            </ul>            
         </div>
     )
 }
 
-export default Menu;
+export default DropDownMenu;

@@ -1,0 +1,35 @@
+@import "/styles/variables";
+@import "/styles/mixins";
+@import "/styles/fonts";
+
+.burger {
+    display: none;
+    
+    @include md-max {
+        display: inline;
+        position: relative;
+
+        &__menu {
+            position: absolute;
+            width: 23px;
+            height: 1.23px;
+            bottom: 55px;
+            left: 100px;
+        
+
+            &--lane {
+                border: solid black 2px;
+                margin-bottom: 5px;
+                border-radius: 24px;
+            }
+        }
+    }
+
+    &__dropDownMenu {
+        position: absolute;
+
+        &--show {
+            display: none;
+        }
+    }
+}
