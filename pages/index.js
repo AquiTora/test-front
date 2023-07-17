@@ -6,24 +6,22 @@ import Content from '../components/Content/Content';
 
 
 export default function Home() {
-    const [card, setCard] = useState([]);
+    const [cards, setCards] = useState([]);
+    const [searchRequest, setSearchRequest] =useState('');
     
-    const fetchCardData = () => {
+    const fetchCardsData = () => {
         fetch('https://cloud.codesupply.co/endpoint/react/data.json')
             .then((response) => {
                 return response.json()
             })
             .then((data) => {
-                setCard(data);
+                setCards(data);
             })
     }
 
     useEffect(() => {
-        fetchCardData();
+        fetchCardsData();
     }, []);
-
-    console.log(card);
-
 
     return (
         <div>
@@ -33,9 +31,14 @@ export default function Home() {
             </Head>
 
             <main>
-                <Header/>
-                {card.length > 0 && (
-                    <Content card={card}/>
+                <Header
+                    setSearchRequest={setSearchRequest}
+                />
+                {cards.length > 0 && (
+                    <Content 
+                        searchRequest={searchRequest}
+                        cards={cards}
+                    />
                 )}
             </main>
         </div>

@@ -6,14 +6,16 @@ import Menu from './Menu/Menu';
 import Burger from '../Burger/Burger';
 
 
-const Header = ({ setOpValue }) => {
+const Header = ({ setSearchRequest }) => {
     const [search, setSearch] = useState(false);
     const rootSearch = useRef(null);
     const rootSearch2 = useRef(null);
 
     return (
         <div className={style.header}>
-            <InputField/>
+            <InputField
+                setSearchRequest={setSearchRequest}
+            />
             <Burger/>
             <Menu/>
         </div>

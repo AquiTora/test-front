@@ -1,8 +1,9 @@
 import style from './InputField.module.scss';
 import { useEffect, useRef, useState } from "react";
 
-const InputField = () => {
+const InputField = ({ setSearchRequest }) => {
     const [search, setSearch] = useState(false);
+    const [text, setText] = useState('');
     const rootSearch = useRef(null);
     const rootSearch2 = useRef(null);
 
@@ -11,10 +12,15 @@ const InputField = () => {
             rootSearch2.current.contains(e.target, setSearch(true)) ||
                 rootSearch.current.contains(e.target) || 
                 setSearch(false);
+                setSearchRequest('');
         };
         document.addEventListener("click", onClick);
         return () => document.removeEventListener("click", onClick);
     }, []);
+
+    function handleChangeText (e) {
+        setText(e.target.value);
+    }
 
     return (
         <div className={style.inputField}>
@@ -22,7 +28,9 @@ const InputField = () => {
 
             <button 
                 ref={rootSearch2}
-                onClick={() => setSearch(true)}
+                onClick={() => {
+                    search === false ? setSearch(true) : setSearchRequest(text);
+                }}
             >
                 <img src='/svg/Search.svg'/>
             </button>
@@ -43,7 +51,14 @@ const InputField = () => {
                         }
                 }
             >                
-                <input/>
+                <input 
+                    onChange={handleChangeText}
+                    onKeyDown={(e) => {
+                        if (e.key === 'Enter') {
+                            setSearchRequest(text);
+                        }
+                    }}
+                />
             </div>
         </div>
     )

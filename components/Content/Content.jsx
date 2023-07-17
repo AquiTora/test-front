@@ -25,17 +25,38 @@ const CardLayout = ({ card }) => {
     )
 }
 
-const Content = ({ card }) => {
+const Content = ({ cards, searchRequest }) => {
+    function filtreCards(card, searchRequest) {
+        let titleFound = card.title.toUpperCase().match(searchRequest.toUpperCase());
+        let textFound = card.text.toUpperCase().match(searchRequest.toUpperCase());
+
+        if (titleFound || textFound) {
+            return (
+                <div>
+                    <CardLayout
+                        card={card}
+                    />
+                </div>
+            )
+        }
+    }
+
+    console.log(cards);
+
     return (
         <div className={style.content}>
-            {card.map((item) => {
-                return (
-                    <div>
-                        <CardLayout
-                            card={item}
-                        />
-                    </div>
-                )
+            {cards.map((item) => {
+                if (searchRequest) {
+                    return filtreCards(item, searchRequest);
+                } else {
+                    return (
+                        <div>
+                            <CardLayout
+                                card={item}
+                            />
+                        </div>
+                    )
+                }
             })}
         </div>
     )
