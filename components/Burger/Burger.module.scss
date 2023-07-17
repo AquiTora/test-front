@@ -8,14 +8,13 @@
     @include md-max {
         display: inline;
         position: relative;
-
+        
         &__menu {
             position: absolute;
             width: 23px;
             height: 1.23px;
             bottom: 55px;
-            left: 100px;
-        
+            left: 20px;
 
             &--lane {
                 border: solid black 2px;
@@ -30,6 +29,5 @@
         position: absolute;
         left: -10px;
         top: -100px;
-        width: 320px;
     }
 }

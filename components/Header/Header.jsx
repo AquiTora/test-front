@@ -6,8 +6,8 @@ import Menu from './Menu/Menu';
 import Burger from '../Burger/Burger';
 
 
-const Header = (props) => {
-    const [search, setSearch] = useState(false);    //Будет время - сделаю выдвижной инпут
+const Header = ({ setOpValue }) => {
+    const [search, setSearch] = useState(false);
     const rootSearch = useRef(null);
     const rootSearch2 = useRef(null);
 

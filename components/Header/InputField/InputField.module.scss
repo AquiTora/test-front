@@ -6,7 +6,7 @@
     display: flex;
     border-bottom: solid $border-color;
     border-width: 1px;
-    padding: 30px 400px 30px 400px;     //Надо будет исправить на rem
+    padding: 2rem 0 2rem 0;     //Надо будет исправить на rem
     overflow: hidden;
     justify-content: center;
 
@@ -21,13 +21,14 @@
         outline: none;
         border: 0;
         background: transparent;
-        z-index: 1;
+        z-index: 3;
     }
 
     .inputSection {
         position: absolute;
         transition: all 0.5s ease-in-out;
         right: 20px;
+        z-index: 2;
 
         input {
             right: 10px;
@@ -36,6 +37,10 @@
             width: 300px;
             border-radius: 24px;
             padding-left: 1rem;
+
+            @include xs-max {
+                width: 220px;
+            }
         }
         input:focus {
             background-color: $border-color;

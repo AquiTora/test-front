@@ -18,6 +18,8 @@ const DropDownMenu = ({ show, setShow }) => {
                     <img src='svg/x.svg'/>
                 </button>
             </div>
+
+            <div className={style.dropDownMenu__hover}/>
             
             <ul className={style.dropDownMenu__nav}>
                 {menuItems.map((item) => {

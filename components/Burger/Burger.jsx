@@ -2,7 +2,7 @@ import style from './Burger.module.scss';
 import { useEffect, useRef, useState } from "react";
 import DropDownMenu from './DropDownMenu/DropDownMenu';
 
-const Burger = () => {
+const Burger = ({ setOpValue }) => {
     const [show, setShow] = useState(false);
     const rootMenu = useRef(null);
     const rootMenu2 = useRef(null);
@@ -32,6 +32,9 @@ const Burger = () => {
                 <div className={style['burger__menu--lane']}/>
                 <div className={style['burger__menu--lane']}/>
             </div>
+
+            <div className={style.burger__hover}/>
+
             <div 
                 className={`${style.burger__dropDownMenu} ${style[`burger__dropDownMenu`]}`}
                 ref={rootMenu}
@@ -48,8 +51,7 @@ const Burger = () => {
                     show={show}
                     setShow={setShow}
                 />
-            </div>
-                        
+            </div> 
         </div>
     )
 }
