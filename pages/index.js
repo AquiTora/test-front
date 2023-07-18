@@ -3,11 +3,13 @@ import styles from '../styles/Home.module.scss';
 import Head from 'next/head';
 import Header from '../components/Header/Header';
 import Content from '../components/Content/Content';
+import Modal from '../components/Modal/Modal';
 
 
 export default function Home() {
     const [cards, setCards] = useState([]);
-    const [searchRequest, setSearchRequest] =useState('');
+    const [searchRequest, setSearchRequest] = useState('');
+    const [modalActive, setModalActive] = useState(true);
     
     const fetchCardsData = () => {
         fetch('https://cloud.codesupply.co/endpoint/react/data.json')
@@ -38,8 +40,14 @@ export default function Home() {
                     <Content 
                         searchRequest={searchRequest}
                         cards={cards}
+                        setActive={setModalActive}
                     />
                 )}
+                <Modal
+                    active={modalActive}
+                    setActive={setModalActive}
+                >
+                </Modal>
             </main>
         </div>
     )

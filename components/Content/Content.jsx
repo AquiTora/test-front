@@ -25,7 +25,7 @@ const CardLayout = ({ card }) => {
     )
 }
 
-const Content = ({ cards, searchRequest }) => {
+const Content = ({ cards, searchRequest, setActive }) => {
     function filtreCards(card, searchRequest) {
         let titleFound = card.title.toUpperCase().match(searchRequest.toUpperCase());
         let textFound = card.text.toUpperCase().match(searchRequest.toUpperCase());
@@ -41,8 +41,6 @@ const Content = ({ cards, searchRequest }) => {
         }
     }
 
-    console.log(cards);
-
     return (
         <div className={style.content}>
             {cards.map((item) => {
@@ -50,7 +48,7 @@ const Content = ({ cards, searchRequest }) => {
                     return filtreCards(item, searchRequest);
                 } else {
                     return (
-                        <div>
+                        <div onClick={() => setActive(true)}>
                             <CardLayout
                                 card={item}
                             />
