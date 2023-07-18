@@ -12,7 +12,7 @@ export default function Home() {
     const [modalActive, setModalActive] = useState(false);
     const [modalContent, setModalContent] = useState({});
     const [show, setShow] = useState(true);
-    const [lastScrollY, setLastScrollY] = useState(200);
+    const [lastScrollY, setLastScrollY] = useState(0);
     
     const fetchCardsData = () => {
         fetch('https://cloud.codesupply.co/endpoint/react/data.json')
@@ -28,15 +28,43 @@ export default function Home() {
         fetchCardsData();
     }, []);
 
+    const controlNavbar = () => {
+        if (typeof window !== 'undefined') {
+            if (window.scrollY > 200) {
+                setShow(false);
+            } else {
+                setShow(true);
+            }
+
+            setLastScrollY(window.scrollY);
+        }
+    }
+
+    useEffect(() => {
+        if (typeof window !== 'undefined') {
+            window.addEventListener('scroll', controlNavbar);
+
+            return () => {
+                window.removeEventListener('scroll', controlNavbar);
+            };
+        }
+    }, [lastScrollY]);
+
     return (
-        <div className={style.home}>
+        <div>
             <Head>
                 <title>Create Next App</title>
                 <link rel="icon" href="/favicon.ico"/>
             </Head>
 
             <main>
-                <div className={style.header}>
+                <div 
+                    className={
+                        show 
+                            ? style.header 
+                            : `${style.header} ${style['header--hide']}`
+                    }
+                >
                     <Header
                         setSearchRequest={setSearchRequest}
                     />
