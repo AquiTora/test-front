@@ -16,13 +16,45 @@
     pointer-events: none;
     transition: 0.5s;
 
+    &--active {
+        opacity: 1;
+        pointer-events: all;
+    }
+
     &__content {
         padding: 20px;
         border-radius: 12px;
         background-color: white;
-        width: 50vw;
+        width: 25vw;
         transform: scale(0.5);
         transition: 0.4s all;
+
+        @include lg-max {
+            width: 50vw;
+        }
+        @include xs-max {
+            width: 75vw;
+        }
+
+        h1 {
+            font-family: $main-font;
+        }
+
+        p {
+            font-family: $main-font;
+        }
+
+        button {
+            outline: none;
+            border: 0;
+            color: white;
+            padding: 1rem 2rem 1rem 2rem;
+            border-radius: 24px;
+            background: black;
+        }
+        button:active {
+            background-color: $hover-color;
+        }
 
         &--active {
             transform: scale(1);

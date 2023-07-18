@@ -25,14 +25,20 @@ const CardLayout = ({ card }) => {
     )
 }
 
-const Content = ({ cards, searchRequest, setActive }) => {
+const Content = ({ cards, searchRequest, setActive, setModalContent }) => {
     function filtreCards(card, searchRequest) {
         let titleFound = card.title.toUpperCase().match(searchRequest.toUpperCase());
         let textFound = card.text.toUpperCase().match(searchRequest.toUpperCase());
 
         if (titleFound || textFound) {
             return (
-                <div>
+                <div onClick={() => {
+                    setActive(true);
+                    setModalContent({
+                        title: item.title,
+                        text: item.text
+                    });
+                }}>
                     <CardLayout
                         card={card}
                     />
@@ -48,7 +54,13 @@ const Content = ({ cards, searchRequest, setActive }) => {
                     return filtreCards(item, searchRequest);
                 } else {
                     return (
-                        <div onClick={() => setActive(true)}>
+                        <div onClick={() => {
+                            setActive(true);
+                            setModalContent({
+                                title: item.title,
+                                text: item.text
+                            });
+                        }}>
                             <CardLayout
                                 card={item}
                             />
