@@ -3,7 +3,13 @@ import style from './Content.module.scss';
 const CardLayout = ({ card }) => {
     return (
         <div className={style.card}>
-            <img src={card.img}/>
+            <img
+                srcSet={`
+                    ${card.img} 1x,
+                    ${card.img_2x} 2x
+                `}
+                src={card.img} 
+            />
             <p className={style.card__tag}>
                 {card.tags}
             </p>
