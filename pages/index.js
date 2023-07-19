@@ -103,6 +103,7 @@ export default function Home() {
                                     transform: "translate(-900px, 0)"
                                 }
                         }
+                        onClick={e => e.stopPropagation()}
                     >
                         <DropDownMenu
                             show={showMenu}

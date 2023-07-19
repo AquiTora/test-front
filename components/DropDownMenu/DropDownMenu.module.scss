@@ -1,0 +1,49 @@
+@import "/styles/variables";
+@import "/styles/mixins";
+@import "/styles/fonts";
+
+.dropDownMenu {
+    position: absolute;
+    border: solid $border-color 1px;
+    background-color: white;
+    width: 320px;
+    height: 100vh;
+    z-index: 4;
+
+    &__head {
+        padding: 40px 40px 31px 40px;
+        display: flex;
+        border-bottom: solid $border-color 1px;
+
+        button {
+            position: absolute;
+            outline: none;
+            border: 0;
+            background: transparent;
+            left: 280px;
+        }
+    }
+
+    &__nav {
+        list-style: none;
+    }
+
+    &__menuBtn {
+        border-bottom: solid $border-color 1px;
+        padding-bottom: 1rem;
+        margin-bottom: 1rem;
+        font-size: 1rem;
+        font-family: $main-font;
+        font-weight: 500;
+            
+        img {
+            margin-left: 10px;
+        }
+    }
+
+    &__dropMenu {
+        &--show {
+            display: none;
+        }
+    }
+}
