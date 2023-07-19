@@ -23,4 +23,11 @@
             }
         }
     }
+
+    &__dropDownMenu {
+        transition: all .2s ease-in-out;
+        position: absolute;
+        left: -10px;
+        top: -150px;
+    }
 }
