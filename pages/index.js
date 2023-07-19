@@ -5,7 +5,7 @@ import Header from '../components/Header/Header';
 import Content from '../components/Content/Content';
 import Modal from '../components/Modal/Modal';
 import Burger from "../components/Burger/Burger";
-import DropDownMenu from "../components/Burger/DropDownMenu/DropDownMenu";
+import DropDownMenu from "../components/DropDownMenu/DropDownMenu";
 
 
 export default function Home() {
