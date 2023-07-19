@@ -39,7 +39,7 @@
 
         &--show {
             position: absolute;
-            top: 8.8rem;
+            top: 9.05rem;
             display: block;
             border: solid $border-color;
             background-color: white;
@@ -47,6 +47,10 @@
             list-style: none;
             padding: 1rem 1rem 1rem 1rem;
             width: 176px;
+
+            @include lg-max {
+                width: 90px;
+            }
         }
     }
 
