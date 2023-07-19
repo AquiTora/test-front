@@ -41,13 +41,13 @@ const InputField = ({ setSearchRequest }) => {
                 style={
                     search
                         ? { 
-                              transform: "translate(12px, 0)",
-                              top: "22px"
+                              transform: "translate(0.75rem, 0)",
+                              top: "1.375rem"
                         }
                         : {
                               position: "absolute",
-                              top: "22px",
-                              transform: "translate(900px, 0)",
+                              top: "1.375rem",
+                              transform: "translate(56.25rem, 0)",
                         }
                 }
             >                

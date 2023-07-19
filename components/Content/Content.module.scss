@@ -9,7 +9,7 @@
     margin: auto;
     max-width: 1160px;
     gap: 40px;
-    padding-bottom: 100px;
+    padding-bottom: 6.25rem;
 }
 
 .card {
@@ -33,7 +33,7 @@
     &__title {
         font-family: $main-font;
         font-weight: 700;
-        font-size: 24px;
+        font-size: 1.5rem;
     }
 
     &__meta {
@@ -42,13 +42,13 @@
         p {
             font-family: $main-font;
             font-weight: 500;
-            font-size: 12px;
+            font-size: 0.75rem;
         }
 
         .list {
             font-family: $main-font;
             color: $meta-color;
-            font-size: 12px;
+            font-size: 0.75rem;
 
             li {
                 margin-right: 2rem;
@@ -59,7 +59,7 @@
     &__text {
         font-family: $main-font;
         font-weight: 400;
-        font-size: 14px;
+        font-size: 0.875rem;
         color: $content-color;
     }
 }

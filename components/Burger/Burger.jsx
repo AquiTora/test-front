@@ -1,8 +1,6 @@
 import style from './Burger.module.scss';
-import { useEffect, useRef, useState } from "react";
-import DropDownMenu from './DropDownMenu/DropDownMenu';
 
-const Burger = ({ setOpValue, active, setActive, show, setShow }) => {
+const Burger = ({ setActive, setShow }) => {
     return (
         <div className={style.burger}>
             <div 

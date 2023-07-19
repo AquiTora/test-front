@@ -13,12 +13,12 @@
             position: absolute;
             width: 23px;
             height: 1.23px;
-            bottom: 105px;
-            left: 20px;
+            bottom: 6.563rem;
+            left: 1.25rem;
 
             &--lane {
                 border: solid black 2px;
-                margin-bottom: 5px;
+                margin-bottom: 0.313rem;
                 border-radius: 24px;
             }
         }
@@ -27,7 +27,7 @@
     &__dropDownMenu {
         transition: all .2s ease-in-out;
         position: absolute;
-        left: -10px;
-        top: -150px;
+        left: -0.625rem;
+        top: -9.375rem;
     }
 }

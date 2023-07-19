@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import style from '../styles/Home.module.scss';
 import Head from 'next/head';
 import Header from '../components/Header/Header';
@@ -57,7 +57,7 @@ export default function Home() {
     return (
         <div>
             <Head>
-                <title>Create Next App</title>
+                <title>Test task</title>
                 <link rel="icon" href="/favicon.ico"/>
             </Head>
 
@@ -100,7 +100,7 @@ export default function Home() {
                                 }
                                 : {
                                     position: "absolute",
-                                    transform: "translate(-900px, 0)"
+                                    transform: "translate(-56.25rem, 0)"
                                 }
                         }
                         onClick={e => e.stopPropagation()}

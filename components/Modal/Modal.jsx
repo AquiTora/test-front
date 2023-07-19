@@ -1,4 +1,3 @@
-import { Children } from 'react';
 import style from './Modal.module.scss';
 
 const Modal = ({ active, setActive, children}) => {

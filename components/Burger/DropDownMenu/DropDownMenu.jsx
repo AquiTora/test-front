@@ -1,12 +1,10 @@
 import style from './DropDownMenu.module.scss';
-import { useEffect, useRef, useState } from "react";
 
 const menuItems = ['Demos', 'Post', 'Features', 'Categories', 'Shop', 'Buy Now'];
 
-const DropDownMenu = ({ show, setShow, active, setActive }) => {
+const DropDownMenu = ({ show, setShow, setActive }) => {
 
     function handleChangeShow () {
-        console.log(show);
         show === false ? setShow(true) : setShow(false);
     }
     

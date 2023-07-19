@@ -6,7 +6,7 @@
     display: flex;
     border-bottom: solid $border-color;
     border-width: 1px;
-    padding: 2rem 0 2rem 0;     //Надо будет исправить на rem
+    padding: 2rem 0 2rem 0;
     overflow: hidden;
     justify-content: center;
 
@@ -17,7 +17,7 @@
 
     button {
         position: absolute;
-        right: 20px;
+        right: 1.25rem;
         outline: none;
         border: 0;
         background: transparent;
@@ -27,12 +27,12 @@
     .inputSection {
         position: absolute;
         transition: all 0.5s ease-in-out;
-        right: 20px;
+        right: 1.25rem;
         z-index: 2;
 
         input {
-            right: 10px;
-            top: 0px;
+            right: 0.625rem;
+            top: 0rem;
             height: 35px;
             width: 300px;
             border-radius: 24px;
