@@ -13,7 +13,7 @@
             position: absolute;
             width: 23px;
             height: 1.23px;
-            bottom: 55px;
+            bottom: 100px;
             left: 20px;
 
             &--lane {
@@ -22,12 +22,5 @@
                 border-radius: 24px;
             }
         }
-    }
-
-    &__dropDownMenu {
-        transition: all .2s ease-in-out;
-        position: absolute;
-        left: -10px;
-        top: -100px;
     }
 }

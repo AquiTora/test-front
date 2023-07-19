@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 
 const menuItems = ['Demos', 'Post', 'Features', 'Categories', 'Shop', 'Buy Now'];
 
-const DropDownMenu = ({ show, setShow }) => {
+const DropDownMenu = ({ show, setShow, active, setActive }) => {
 
     function handleChangeShow () {
         console.log(show);
@@ -14,7 +14,12 @@ const DropDownMenu = ({ show, setShow }) => {
         <div className={style.dropDownMenu}>
             <div className={style.dropDownMenu__head}>
                 <img src='/svg/Logotype.svg'/>
-                <button onClick={handleChangeShow}>
+                <button 
+                    onClick={() => {
+                        setActive(false);
+                        handleChangeShow();
+                    }}
+                >
                     <img src='svg/x.svg'/>
                 </button>
             </div>

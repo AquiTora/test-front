@@ -16,7 +16,6 @@ const Header = ({ setSearchRequest }) => {
             <InputField
                 setSearchRequest={setSearchRequest}
             />
-            <Burger/>
             <Menu/>
         </div>
     )

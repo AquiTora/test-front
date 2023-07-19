@@ -3,7 +3,7 @@
 @import "/styles/fonts";
 
 .dropDownMenu {
-    position: absolute;
+    position: fixed;
     border: solid $border-color 1px;
     background-color: white;
     width: 320px;

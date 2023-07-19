@@ -8,3 +8,31 @@
         transform: translate(0, -200px);
     }
 }
+
+.dropDownMenu {
+    transition: all .2s ease-in-out;
+    position: absolute;
+    left: -1px;
+    top: -1px;
+}
+
+
+.hover {
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(255, 255, 255, 0.411);
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.5s;
+
+    &--active {
+        opacity: 1;
+        pointer-events: all;
+    }
+}

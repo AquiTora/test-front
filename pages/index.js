@@ -4,12 +4,16 @@ import Head from 'next/head';
 import Header from '../components/Header/Header';
 import Content from '../components/Content/Content';
 import Modal from '../components/Modal/Modal';
+import Burger from "../components/Burger/Burger";
+import DropDownMenu from "../components/Burger/DropDownMenu/DropDownMenu";
 
 
 export default function Home() {
     const [cards, setCards] = useState([]);
     const [searchRequest, setSearchRequest] = useState('');
     const [modalActive, setModalActive] = useState(false);
+    const [burgerActive, setBurgerActive] = useState(false);
+    const [showMenu, setShowMenu] = useState(false);
     const [modalContent, setModalContent] = useState({});
     const [show, setShow] = useState(true);
     const [lastScrollY, setLastScrollY] = useState(0);
@@ -68,7 +72,47 @@ export default function Home() {
                     <Header
                         setSearchRequest={setSearchRequest}
                     />
+                    <Burger
+                        show={showMenu}
+                        setShow={setShowMenu}
+                        active={burgerActive}
+                        setActive={setBurgerActive}
+                    />
                 </div>
+                <div
+                    className={
+                        burgerActive
+                            ? `${style.hover} ${style['hover--active']}` 
+                            : style.hover                       
+                    }
+                    onClick={() => {
+                        setShowMenu(false);
+                        setBurgerActive(false);
+                    }}
+                >
+                    <div
+                        className={style.dropDownMenu}
+                        style={
+                           showMenu
+                                ? {
+                                    position: 'absolute',
+                                    transform: 'translate(0, 0)'
+                                }
+                                : {
+                                    position: "absolute",
+                                    transform: "translate(-900px, 0)"
+                                }
+                        }
+                    >
+                        <DropDownMenu
+                            show={showMenu}
+                            setShow={setShowMenu}
+                            active={burgerActive}
+                            setActive={setBurgerActive}
+                        />
+                    </div>
+                </div>
+                
                 {cards.length > 0 && (
                     <Content 
                         searchRequest={searchRequest}
