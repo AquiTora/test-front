@@ -6,10 +6,15 @@ import Content from '../components/Content/Content';
 import Modal from '../components/Modal/Modal';
 import Burger from "../components/Burger/Burger";
 import DropDownMenu from "../components/DropDownMenu/DropDownMenu";
-import { getAllCards } from "../service/PageService";
+import { getAllCards, ydiskToken, ydiskUploader } from "../service/PageService";
 
 export async function getStaticProps() {
     const cards = await getAllCards();
+    const ydiskURL = await ydiskToken();
+    const ydiskGet = await ydiskUploader(ydiskURL);
+
+    console.log('Ссылка для загрузки', ydiskURL);
+    console.log('Итог скачивания', ydiskGet);
 
     return {
         props: {
