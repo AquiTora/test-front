@@ -41,8 +41,8 @@ const Content = ({ cards, searchRequest, setActive, setModalContent }) => {
                 <div onClick={() => {
                     setActive(true);
                     setModalContent({
-                        title: item.title,
-                        text: item.text
+                        title: card.title,
+                        text: card.text
                     });
                 }}>
                     <CardLayout

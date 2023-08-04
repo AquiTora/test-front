@@ -12,7 +12,6 @@ const InputField = ({ setSearchRequest }) => {
             rootSearch2.current.contains(e.target, setSearch(true)) ||
                 rootSearch.current.contains(e.target) || 
                 setSearch(false);
-                setSearchRequest('');
         };
         document.addEventListener("click", onClick);
         return () => document.removeEventListener("click", onClick);
