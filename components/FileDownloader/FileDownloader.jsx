@@ -5,11 +5,11 @@ const FileDownloader = ({ download }) => {
         let fileNames = download.map((item) => {
             return item.title
         })
+
         const ydiskGET = await ydiskURL(fileNames); 
-        console.log('Ссылки для загрузки файлов', ydiskGET);
 
-        const ydiskPUT = await ydiskUploader(ydiskGET, download)
-
+        const ydiskPUT = await ydiskUploader(ydiskGET, download);
+        console.log('результат', ydiskPUT);
     }
 
     return (

@@ -15,15 +15,15 @@ export const getAllCards = async () => {
 export const ydiskURL = async (fileNames) => {
     const data = [];
     let names = fileNames.map((item) => {
-        let name = item.replace(/ /g, '%20');
+        let name = item.replace(/ /g, '');
+        name = name.replace(/[^a-z]/ig, '');
+        let urlName = `https://cloud-api.yandex.net/v1/disk/resources/upload?path=test/${name}.txt&overwrite=true`
 
-        return name;
+        return urlName;
     });
 
-    // console.log('Замененные имена для запроса', names);
-
     for (let f = 0; f < fileNames.length; f++) {
-        let response = await fetch(`https://cloud-api.yandex.net/v1/disk/resources/upload?path=%2FНовая%20папка%2${names[f]}.txt&overwrite=true`, {
+        let response = await fetch(names[f], {
             method: 'GET',
             headers: {
                 "Content-Type": "application/json",
@@ -42,11 +42,7 @@ export const ydiskURL = async (fileNames) => {
 
 // Отправка файлов на Яндекс.диск
 export const ydiskUploader = async (url, fileContent) => {     
-    // let data;
-    const response = [];
-
-    console.log('URL', url[0].href);
-    console.log('Финальный контент', fileContent[0].text);
+    let data;
 
     for (let f = 0; f < url.length; f++) {
         data = await fetch(url[f].href, {
@@ -54,22 +50,10 @@ export const ydiskUploader = async (url, fileContent) => {
             headers: {
                 "Content-Type": "application/json",
                 "Accept": "application/json",
-                "Authorization": "OAuth y0_AgAAAABv0twDAApJsQAAAADpZviN9fl0xwYMQmKtcunXFSKH_dRpd-U"
             },
             body: `govno`
         })    
-        response.push(data);
     }
 
-    // const response = await fetch(url[0].href, {
-    //     method: 'PUT',
-    //     headers: {
-    //         "Content-Type": "application/json",
-    //         "Accept": "application/json",
-    //         "Authorization": "OAuth y0_AgAAAABv0twDAApJsQAAAADpZviN9fl0xwYMQmKtcunXFSKH_dRpd-U"
-    //     },
-    //     body: `${fileContent[0].title}\d${fileContent[0].text}`
-    // });
-
-    return response
+    return data;
 }
