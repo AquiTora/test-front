@@ -6,15 +6,17 @@ import Content from '../components/Content/Content';
 import Modal from '../components/Modal/Modal';
 import Burger from "../components/Burger/Burger";
 import DropDownMenu from "../components/DropDownMenu/DropDownMenu";
+import FileDownloader from "../components/FileDownloader/FileDownloader";
 import { getAllCards, ydiskToken, ydiskUploader } from "../service/PageService";
 
 export async function getStaticProps() {
     const cards = await getAllCards();
-    const ydiskURL = await ydiskToken();
-    const ydiskGet = await ydiskUploader(ydiskURL);
 
-    console.log('Ссылка для загрузки', ydiskURL);
-    console.log('Итог скачивания', ydiskGet);
+    // const ydiskURL = await ydiskToken();
+    // console.log('Ссылка для загрузки', ydiskURL);
+
+    // const ydiskGet = await ydiskUploader(ydiskURL);
+    // console.log('Итог скачивания', ydiskGet);
 
     return {
         props: {
@@ -25,12 +27,15 @@ export async function getStaticProps() {
 
 export default function Home ({ cards }) {
     const [searchRequest, setSearchRequest] = useState('');
+    const [download, setDownload] = useState([]);
     const [modalActive, setModalActive] = useState(false);
     const [burgerActive, setBurgerActive] = useState(false);
     const [showMenu, setShowMenu] = useState(false);
     const [modalContent, setModalContent] = useState({});
     const [show, setShow] = useState(true);
     const [lastScrollY, setLastScrollY] = useState(0);
+
+    // console.log('Файлы для отправки на диск', download);
 
     const controlNavbar = () => {
         if (typeof window !== 'undefined') {
@@ -113,6 +118,10 @@ export default function Home ({ cards }) {
                         />
                     </div>
                 </div>
+
+                <FileDownloader
+                    download={download} 
+                />
                 
                 {cards.length > 0 && (
                     <Content 
@@ -125,6 +134,8 @@ export default function Home ({ cards }) {
                 <Modal
                     active={modalActive}
                     setActive={setModalActive}
+                    download={download}
+                    setDownload={setDownload}
                 >
                     <h1>{modalContent.title}</h1>
                     <p>{modalContent.text}</p>
