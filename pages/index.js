@@ -6,10 +6,19 @@ import Content from '../components/Content/Content';
 import Modal from '../components/Modal/Modal';
 import Burger from "../components/Burger/Burger";
 import DropDownMenu from "../components/DropDownMenu/DropDownMenu";
+import { getAllCards } from "../service/PageService";
 
+export async function getStaticProps() {
+    const cards = await getAllCards();
 
-export default function Home() {
-    const [cards, setCards] = useState([]);
+    return {
+        props: {
+            cards
+        }
+    }
+}
+
+export default function Home ({ cards }) {
     const [searchRequest, setSearchRequest] = useState('');
     const [modalActive, setModalActive] = useState(false);
     const [burgerActive, setBurgerActive] = useState(false);
@@ -17,20 +26,6 @@ export default function Home() {
     const [modalContent, setModalContent] = useState({});
     const [show, setShow] = useState(true);
     const [lastScrollY, setLastScrollY] = useState(0);
-    
-    const fetchCardsData = () => {
-        fetch('https://cloud.codesupply.co/endpoint/react/data.json')
-            .then((response) => {
-                return response.json()
-            })
-            .then((data) => {
-                setCards(data);
-            })
-    };
-
-    useEffect(() => {
-        fetchCardsData();
-    }, []);
 
     const controlNavbar = () => {
         if (typeof window !== 'undefined') {
