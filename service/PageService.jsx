@@ -19,7 +19,7 @@ export const ydiskURL = async (fileNames) => {
             let name = item.replace(/ /g, '');
             // Посмотреть: можно ли через 1 реплейс все заменить
             name = name.replace(/[^a-z]/ig, '');
-            let urlName = `https://cloud-api.yandex.net/v1/disk/resources/upload?path=test/${name}.txt&overwrite=true`
+            let urlName = `https://cloud-api.yandex.net/v1/disk/resources/upload?path=test/${name}&overwrite=true`
 
             return urlName;
         });
@@ -80,14 +80,32 @@ export const ydiskUploader = async (url, fileContent) => {
 
 // Отправка файлов на Яндекс.диск
 export const ydiskFileUploader = async (url, file) => {
-    const data = await fetch(url.href, {
-        method: 'PUT',
-        headers: {
-            "Content-Type": "application/json",
-            "Accept": "application/json",
-        },
-        body: file
-    })
+    if (Array.isArray(url)) {
+        let data;
+        for (let f = 0; f < url.length; f++) {
+            data = await fetch(url[f].href, {
+                method: 'PUT',
+                headers: {
+                    "Content-Type": "application/json",
+                    "Accept": "application/json",
+                },
+                body: file[f]
+            })
+        }
 
-    return data;
+        return data;     
+    } else {
+        const data = await fetch(url.href, {
+            method: 'PUT',
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json",
+            },
+            body: file
+        })
+
+        return data;
+    }
+
+    
 }
