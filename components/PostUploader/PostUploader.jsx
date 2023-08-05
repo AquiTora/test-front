@@ -1,4 +1,4 @@
-import {ydiskURL, ydiskUploader} from '../../service/PageService';
+import { ydiskURL, ydiskUploader } from '../../service/PageService';
 
 const PostUploader = ({ upload }) => {
     async function handleSubmit (upload) {

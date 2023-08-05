@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import style from './Menu.module.scss';
+import Link from 'next/link';
 
 const menuItems = ['Demos', 'Post', 'Features', 'Categories', 'Shop', 'Buy Now'];
 const subMenuItems = ['Post Header', 'Post Layout', 'Share Buttons', 'Gallery Post', 'Video Post'];
@@ -64,6 +65,7 @@ const Menu = () => {
                         </il>
                     )
                 })}
+                <Link href='/fileUploader'>Upload file</Link>
             </ul>
         </div>
     )
