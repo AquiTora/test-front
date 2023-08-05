@@ -1,15 +1,15 @@
 import style from './Modal.module.scss';
 
-const Modal = ({ active, setActive, download, setDownload, children}) => {
+const Modal = ({ active, setActive, upload, setUpload, children}) => {
     function handleAddDownload(title, text) {
-        let data = download;
+        let data = upload;
         let addData = {
             title: title,
             text: text
         }
         data.push(addData);
 
-        setDownload(data);
+        setUpload(data);
     }
 
     return (
@@ -28,7 +28,7 @@ const Modal = ({ active, setActive, download, setDownload, children}) => {
                 <button
                     onClick={() => handleAddDownload(children[0].props.children, children[1].props.children)}
                 >
-                    Add to download
+                    Add to upload
                 </button>
             </div>
         </div>

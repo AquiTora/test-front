@@ -16,6 +16,7 @@ export const ydiskURL = async (fileNames) => {
     const data = [];
     let names = fileNames.map((item) => {
         let name = item.replace(/ /g, '');
+        // Посмотреть: можно ли через 1 реплейс все заменить
         name = name.replace(/[^a-z]/ig, '');
         let urlName = `https://cloud-api.yandex.net/v1/disk/resources/upload?path=test/${name}.txt&overwrite=true`
 
@@ -51,7 +52,9 @@ export const ydiskUploader = async (url, fileContent) => {
                 "Content-Type": "application/json",
                 "Accept": "application/json",
             },
-            body: `govno`
+            body: 
+                `${fileContent[f].title}
+                ${fileContent[f].text}`
         })    
     }
 

@@ -6,17 +6,11 @@ import Content from '../components/Content/Content';
 import Modal from '../components/Modal/Modal';
 import Burger from "../components/Burger/Burger";
 import DropDownMenu from "../components/DropDownMenu/DropDownMenu";
-import FileDownloader from "../components/FileDownloader/FileDownloader";
-import { getAllCards, ydiskToken, ydiskUploader } from "../service/PageService";
+import PostUploader from "../components/PostUploader/PostUploader";
+import { getAllCards } from "../service/PageService";
 
 export async function getStaticProps() {
     const cards = await getAllCards();
-
-    // const ydiskURL = await ydiskToken();
-    // console.log('Ссылка для загрузки', ydiskURL);
-
-    // const ydiskGet = await ydiskUploader(ydiskURL);
-    // console.log('Итог скачивания', ydiskGet);
 
     return {
         props: {
@@ -27,7 +21,7 @@ export async function getStaticProps() {
 
 export default function Home ({ cards }) {
     const [searchRequest, setSearchRequest] = useState('');
-    const [download, setDownload] = useState([]);
+    const [upload, setUpload] = useState([]);
     const [modalActive, setModalActive] = useState(false);
     const [burgerActive, setBurgerActive] = useState(false);
     const [showMenu, setShowMenu] = useState(false);
@@ -119,8 +113,8 @@ export default function Home ({ cards }) {
                     </div>
                 </div>
 
-                <FileDownloader
-                    download={download} 
+                <PostUploader
+                    upload={upload} 
                 />
                 
                 {cards.length > 0 && (
@@ -134,8 +128,8 @@ export default function Home ({ cards }) {
                 <Modal
                     active={modalActive}
                     setActive={setModalActive}
-                    download={download}
-                    setDownload={setDownload}
+                    upload={upload}
+                    setUpload={setUpload}
                 >
                     <h1>{modalContent.title}</h1>
                     <p>{modalContent.text}</p>
