@@ -65,7 +65,9 @@ const Menu = () => {
                         </il>
                     )
                 })}
-                <Link href='/fileUploader'>Upload file</Link>
+                <li>
+                    <Link className={style.myLink} href='/fileUploader'>Upload file</Link>
+                </li>
             </ul>
         </div>
     )

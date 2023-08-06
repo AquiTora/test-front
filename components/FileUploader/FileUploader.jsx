@@ -3,11 +3,12 @@ import style from './FileUploader.module.scss';
 import { ydiskURL, ydiskFileUploader } from "../../service/PageService";
 import Modal from "../Modal/Modal";
 
-const FileUploader = () => {
+const FileUploader = ({ token }) => {
     const [fileList, setFileList] = useState(null);
     const [toMany, setToMany] = useState(false);
     const [send, setSend] = useState(false);
     const [fail, setFail] = useState(false);
+    const [tokenVer, setTokenVer] = useState(false);
     const files = fileList ? [...fileList] : [];
 
     const handleFileChange = (e) => {
@@ -20,13 +21,16 @@ const FileUploader = () => {
         } else if (files.length > 100) {
             setToMany(true);
             return;
+        } else if (!token) {
+            setTokenVer(true);
+            return;            
         }
 
         let names = files.map((item) => {
             return item.name
         })
 
-        const ydiskGET = await ydiskURL(names);
+        const ydiskGET = await ydiskURL(names, token);
 
         const ydiskPUT = await ydiskFileUploader(ydiskGET, files)
 
@@ -64,6 +68,13 @@ const FileUploader = () => {
                 <button onClick={handleUploadClick}>Upload</button>
                 <button onClick={handleClearAll}>Clear all</button>
             </div>   
+
+            <Modal
+                active={tokenVer}
+                setActive={setTokenVer}
+            >
+                <h1>The token is missing</h1>
+            </Modal>
 
             <Modal
                 active={send}

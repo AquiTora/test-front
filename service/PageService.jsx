@@ -7,7 +7,7 @@ export const getAllCards = async () => {
 }
 
 // Получение ссылки для загрузки на Яндекс.диск
-export const ydiskURL = async (fileNames) => {
+export const ydiskURL = async (fileNames, token) => {
     const data = [];
     let names = fileNames.map((item) => {
         let name = item.replace(/ /g, '');
@@ -22,7 +22,7 @@ export const ydiskURL = async (fileNames) => {
             headers: {
                 "Content-Type": "application/json",
                 "Accept": "application/json",
-                "Authorization": "OAuth y0_AgAAAABv0twDAApJsQAAAADpZviN9fl0xwYMQmKtcunXFSKH_dRpd-U"
+                "Authorization": `OAuth ${token}`
             }
         });
 

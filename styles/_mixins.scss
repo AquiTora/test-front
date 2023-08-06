@@ -1,3 +1,5 @@
+@import "./fonts";
+
 @mixin hg-max {
     @media screen and (max-width: 1200px) {
         @content
@@ -36,4 +38,5 @@
     border-radius: 24px;
     background: black;
     margin-right: 1rem;
+    font-family: $main-font;
 }
