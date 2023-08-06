@@ -6,7 +6,6 @@ import Content from '../components/Content/Content';
 import Modal from '../components/Modal/Modal';
 import Burger from "../components/Burger/Burger";
 import DropDownMenu from "../components/DropDownMenu/DropDownMenu";
-import PostUploader from "../components/PostUploader/PostUploader";
 import { getAllCards } from "../service/PageService";
 
 export async function getStaticProps() {
@@ -21,15 +20,12 @@ export async function getStaticProps() {
 
 export default function Home ({ cards }) {
     const [searchRequest, setSearchRequest] = useState('');
-    const [upload, setUpload] = useState([]);
     const [modalActive, setModalActive] = useState(false);
     const [burgerActive, setBurgerActive] = useState(false);
     const [showMenu, setShowMenu] = useState(false);
     const [modalContent, setModalContent] = useState({});
     const [show, setShow] = useState(true);
     const [lastScrollY, setLastScrollY] = useState(0);
-
-    // console.log('Файлы для отправки на диск', download);
 
     const controlNavbar = () => {
         if (typeof window !== 'undefined') {
@@ -112,10 +108,6 @@ export default function Home ({ cards }) {
                         />
                     </div>
                 </div>
-
-                <PostUploader
-                    upload={upload} 
-                />
                 
                 {cards.length > 0 && (
                     <Content 
@@ -128,8 +120,6 @@ export default function Home ({ cards }) {
                 <Modal
                     active={modalActive}
                     setActive={setModalActive}
-                    upload={upload}
-                    setUpload={setUpload}
                 >
                     <h1>{modalContent.title}</h1>
                     <p>{modalContent.text}</p>

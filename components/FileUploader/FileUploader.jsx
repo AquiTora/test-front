@@ -1,76 +1,57 @@
 import { useState } from "react";
+import style from './FileUploader.module.scss';
 import { ydiskURL, ydiskFileUploader } from "../../service/PageService";
+import Modal from "../Modal/Modal";
 
 const FileUploader = () => {
-    const [file, setFile] = useState();
     const [fileList, setFileList] = useState(null);
+    const [toMany, setToMany] = useState(false);
+    const [send, setSend] = useState(false);
+    const [fail, setFail] = useState(false);
+    const files = fileList ? [...fileList] : [];
 
     const handleFileChange = (e) => {
-        if (e.target.files) {
-            setFile(e.target.files[0]);
-        }
-    };
-
-    const handleUploadClick = async () => {
-        if (!file) {
-            return;
-        }
-
-        console.log('Наш файл', file);
-
-        const ydiskGET = await ydiskURL(file.name);
-        console.log('Ссылка для отправки', ydiskGET);
-
-        const ydiskPUT = await ydiskFileUploader(ydiskGET, file);
-        console.log("Результат отправки", ydiskPUT);
-    }
-
-    const handleFileChangeMulti = (e) => {
         setFileList(e.target.files);
     }
 
-    const handleUploadClickMulti = async () => {
+    const handleUploadClick = async () => {
         if (!fileList) {
+            return;
+        } else if (files.length > 100) {
+            setToMany(true);
             return;
         }
 
-        const data = new FormData();
-        files.forEach((file) => {
-            console.log('Что-то происходит');
-            data.append(`file`, file, file.name);
-        })
-        const test = data.getAll('file');
-
-        console.log('Что отправляем', test);
-        let names = test.map((item) => {
+        let names = files.map((item) => {
             return item.name
         })
 
         const ydiskGET = await ydiskURL(names);
-        console.log('Ссылки для загрузки', ydiskGET);
 
-        const ydiskPUT = await ydiskFileUploader(ydiskGET, test)
-        console.log('Результат загрузки', ydiskPUT);
+        const ydiskPUT = await ydiskFileUploader(ydiskGET, files)
+
+        if (ydiskPUT.status == 201) {
+            handleClearAll();
+            setSend(true);
+        } else if (ydiskPUT.status != 201) {
+            handleClearAll();
+            setFail(true);
+        }
     }
 
-    const files = fileList ? [...fileList] : [];
+    const handleClearAll = () => {
+        setFileList(null);
+        files.length = 0;
+    }
+
+    
 
     return (
-        <div>
-            <h1>Chose your file for upload</h1>
+        <div className={style.fileUploader}>
+            <h1>Chose your files for upload</h1>
 
-            <div>
-                <h1>Тестовая отправка одного файла</h1>
-
-                <input type='file' onChange={handleFileChange} />
-                <div>{file && `${file.name} - ${file.type}`}</div>
-                <button onClick={handleUploadClick}>Upload</button>
-            </div>
-
-            <div>
-                <h1>Итоговая отправка нескольких файлов</h1>
-
-                <input type='file' onChange={handleFileChangeMulti} multiple/>
+            <div className={style.fileUploader__inputForm}>
+                <input type='file' onChange={handleFileChange} multiple/>
 
                 <ul>
                     {files.map((file, i) => (
@@ -80,8 +61,30 @@ const FileUploader = () => {
                     ))}
                 </ul>
 
-                <button onClick={handleUploadClickMulti}>Upload</button>
-            </div>            
+                <button onClick={handleUploadClick}>Upload</button>
+                <button onClick={handleClearAll}>Clear all</button>
+            </div>   
+
+            <Modal
+                active={send}
+                setActive={setSend}
+            >
+                <h1>Files sent successfully</h1>
+            </Modal>
+
+            <Modal
+                active={fail}
+                setActive={setFail}
+            >
+                <h1>An error occurred</h1>
+            </Modal>
+
+            <Modal 
+                active={toMany}
+                setActive={setToMany}
+            >
+                <h1>To many files</h1>
+            </Modal>
         </div>
     )
 }

@@ -1,17 +1,6 @@
 import style from './Modal.module.scss';
 
-const Modal = ({ active, setActive, upload, setUpload, children}) => {
-    function handleAddDownload(title, text) {
-        let data = upload;
-        let addData = {
-            title: title,
-            text: text
-        }
-        data.push(addData);
-
-        setUpload(data);
-    }
-
+const Modal = ({ active, setActive, children}) => {
     return (
         <div 
             className={active ? `${style.modal} ${style['modal--active']}` : style.modal} 
@@ -24,11 +13,6 @@ const Modal = ({ active, setActive, upload, setUpload, children}) => {
                 {children}
                 <button onClick={() => setActive(false)}>
                     Close
-                </button>
-                <button
-                    onClick={() => handleAddDownload(children[0].props.children, children[1].props.children)}
-                >
-                    Add to upload
                 </button>
             </div>
         </div>
